@@ -1,5 +1,5 @@
 module.exports = {
-  Chef: require("./chefs")
+  Chef: require("./Chefs")
  
 };
 module.exports = {

@@ -1,9 +1,9 @@
 const express = require("express");
 
 const mongoose = require("mongoose");
-const Apiroutes = require("./routes/api");
+const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3004;
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 // Add routes, both API and view
-app.use("/api", apiRoutes);
+app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Chef-N-tly");

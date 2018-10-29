@@ -1,22 +1,26 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
+import Homie from "./pages/Homie";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
+import Navbar from "./components/Nav";
 
 const App = () => (
+  <MuiThemeProvider>
   <Router>
+    
     <div>
-      <Nav />
+      <Navbar />
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/chefs" component={Dashboard} />
-
+        <Route exact path="/" component={Homie} />
+        <Route exact path="/aboutus" component={Home} />
         <Route component={NoMatch} />
       </Switch>
     </div>
+   
   </Router>
+  </MuiThemeProvider>
 );
 
 export default App;

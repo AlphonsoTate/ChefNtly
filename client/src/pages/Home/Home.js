@@ -7,23 +7,15 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 
-
 class Chefs extends Component {
   state = {
     firstname: "",
     lastname: "",
-    city:"",
-    company:"",
-    bio:"",
-    email: "",
-    date: Date.now,
-    servingMin: 0,
-    servingMax: 0,
-    password:"",
-    phone: "",
-    meals: { dinner:"",
-             lunch:"",      
-             breakfast:"" }  
+    city: "",
+    company: "",
+    bio: "",
+    email: ""
+    
   };
 
   componentDidMount() {
@@ -33,7 +25,13 @@ class Chefs extends Component {
   loadChefs = () => {
     API.getChefs()
       .then(res =>
-        this.setState({ chefs: res.data, email: res.data.email, city: res.data.city, bio: res.data.bio, phone: res.data.phone })
+        this.setState({
+          chefs: res.data,
+          email: res.data.email,
+          city: res.data.city,
+          bio: res.data.bio,
+          phone: res.data.phone
+        })
       )
       .catch(err => console.log(err));
   };
@@ -66,9 +64,7 @@ class Chefs extends Component {
         servingMin: this.state.servingMin,
         servingMax: this.state.servingMax,
         date: this.state.date,
-        meals: this.state.meals,
-
-
+        meals: this.state.meals
       })
         .then(res => this.loadChefs())
         .catch(err => console.log(err));
@@ -77,12 +73,12 @@ class Chefs extends Component {
 
   render() {
     return (
-      
       <Container fluid>
-        <Row>-
+        <Row>
+          
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Should I Eat </h1>
+              <h1>What SHould I Eat </h1>
             </Jumbotron>
             <form>
               <Input
@@ -104,7 +100,7 @@ class Chefs extends Component {
                 placeholder="Synopsis (Optional)"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.password && this.state.email)}
                 onClick={this.handleFormSubmit}
               >
                 Submit Book
@@ -113,18 +109,18 @@ class Chefs extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1>Chefs On My List</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {/* {this.state.Chefs.length ? ( */}
               <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {this.state.Chefs.map(book => (
+                  <ListItem key={Chefs._id}>
+                    <Link to={"/chefs/" + Chefs._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {Chefs.title} by {Chefs.author}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => this.deleteChef(Chefs._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -136,6 +132,8 @@ class Chefs extends Component {
       </Container>
     );
   }
+
+    
 }
 
 export default Chefs;
